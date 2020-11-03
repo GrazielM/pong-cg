@@ -1,3 +1,14 @@
+	... Metodo display:
+		textosMenu(gl);
+   
+   /**
+     * Inicio Código
+     */
+    private void textosMenu(GL2 gl) {
+        desenhaTextos("menu", textoRenderer);
+//        desenhaTextos("creditos", textoRenderer);
+    }
+
 /**
      * Método responsável por fazer a escrita dos textos nas cenas.
      *
@@ -6,32 +17,26 @@
      */
     public void desenhaTextos(String cena, TextRenderer textRenderer) {
         //Variaveis globais do método
-        int posX = retornaMeio((Renderer.screenWidth), cena);
+        int posX = retornaMeio((Renderer.screenWidth), cena) - textRenderer.getFont().toString().length();
         int sizeFont = textRenderer.getFont().getSize();
         int espacamento = 10;
+        List<String> strings = null;
+        int posY = 0;
 
         if (cena.equals("menu")) {
-            List<String> strings = leTexto("menu");
-            posX = posX - textRenderer.getFont().toString().length();
-            int posY = Renderer.screenHeight - (sizeFont + espacamento);
-            for (String string : strings) {
-                textRenderer.beginRendering(Renderer.screenWidth, Renderer.screenHeight);
-                textRenderer.setColor(Color.white);
-                textRenderer.draw(string, posX, posY);
-                textRenderer.endRendering();
-                posY -= sizeFont + espacamento;
-            }
+            strings = leTexto("menu");
+            posY = Renderer.screenHeight - (sizeFont + espacamento);
         } else if (cena.equals("creditos")) {
-            List<String> strings = leTexto("creditos");
-            posX = posX - textRenderer.getFont().toString().length();
-            int posY = retornaMeio(Renderer.screenHeight, cena);
-            for (String string : strings) {
-                textRenderer.beginRendering(Renderer.screenWidth, Renderer.screenHeight);
-                textRenderer.setColor(Color.white);
-                textRenderer.draw(string, posX, posY);
-                textRenderer.endRendering();
-                posY -= sizeFont + espacamento;
-            }
+            strings = leTexto("creditos");
+            posY = retornaMeio(Renderer.screenHeight, cena);
+        }
+
+        for (String string : strings) {
+            textRenderer.beginRendering(Renderer.screenWidth, Renderer.screenHeight);
+            textRenderer.setColor(Color.white);
+            textRenderer.draw(string, posX, posY);
+            textRenderer.endRendering();
+            posY -= sizeFont + espacamento;
         }
     }
 
