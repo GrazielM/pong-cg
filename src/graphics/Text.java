@@ -1,15 +1,30 @@
-	... Metodo display:
-		textosMenu(gl);
-   
-   /**
+package graphics;
+
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.util.awt.TextRenderer;
+import scene.Renderer;
+
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Text {
+
+    private TextRenderer textoRenderer;
+
+    /**
      * Inicio Código
      */
     private void textosMenu(GL2 gl) {
+
         desenhaTextos("menu", textoRenderer);
 //        desenhaTextos("creditos", textoRenderer);
     }
 
-/**
+    /**
      * Método responsável por fazer a escrita dos textos nas cenas.
      *
      * @param cena         que será exibido os textos.
@@ -89,3 +104,5 @@
         }
         return null;
     }
+
+}
