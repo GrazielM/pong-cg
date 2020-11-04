@@ -1,0 +1,17 @@
+Regras do jogo:
+
+1 - O jogo é composto por 3 fases.
+2 - Rebata a bola com o bastão para ganhar pontos.
+3 - Cada bola rebatida vale 10 pontos.
+4 - Some 200 pontos para passar para a proxima fase.
+5 - Cada vez que a bola atingir o chão você perde 1 vida.
+6 - Você possui um total de 3 vidas por fase.
+7 - A cada fase concluida suas vidas voltam para 3.
+
+Controles:
+
+Setas do teclado para mover a barra
+ESC para encerrar o jogo.
+P para pausar ou retomar o jogo.
+
+Enter para continuar

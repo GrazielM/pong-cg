@@ -4,12 +4,16 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.glu.GLU;
+import core.GameState;
+import utils.MovementBuffer;
 import entities.EntityHandler;
 
 public class Stage implements GLEventListener {
 	private float xMin, xMax, yMin, yMax, zMin, zMax;
 	GLU glu;
 	EntityHandler scenePopulation;
+	MovementBuffer movBuff;
+	GameState gs;
 
 	public void init(GLAutoDrawable drawable) {
 		//dados iniciais da cena
@@ -18,7 +22,9 @@ public class Stage implements GLEventListener {
 		gl.glEnable(GL2.GL_BLEND);
 		gl.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
 
-		scenePopulation = new EntityHandler(gl);
+		gs = new GameState();
+		movBuff = new MovementBuffer();
+		scenePopulation = new EntityHandler(gl, gs);
 
 		//Estabelece as coordenadas do SRU (Sistema de Referencia do Universo)
 		xMin = yMin = zMin = -1;
@@ -31,7 +37,7 @@ public class Stage implements GLEventListener {
 		gl.glClear(GL2.GL_COLOR_BUFFER_BIT);
 		gl.glLoadIdentity();
 
-		scenePopulation.updateScene();
+		scenePopulation.updateScene(movBuff);
 	}
 
 	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {

@@ -1,17 +1,20 @@
 package entities;
 
 import com.jogamp.opengl.GL2;
-import core.CollisionEvent;
+import core.GameState;
+import utils.CollisionEvent;
 import utils.Vector;
 
 public class Ball extends Entity {
 
-	public Vector direction = new Vector(1, 0);
-	public double speed = 0.01;
+	public Vector direction = new Vector(1, 0.5);
+	public double speed = 0.02;
 	private static final int RESOLUTION = 16;
+	private GameState gs;
 
-	public Ball(double radius) {
+	public Ball(double radius, GameState gs) {
 		super(createPoints(radius));
+		this.gs = gs;
 	}
 
 	private static Vector[] createPoints(double radius) {
@@ -27,8 +30,15 @@ public class Ball extends Entity {
 	}
 
 	@Override
-	public void draw(GL2 gl) {
-		translate(direction.x * speed, direction.y * speed);
+	public void draw(GL2 gl, double[] color) {
+		if (gs.nivel == 2) speed = .025;
+		if (gs.nivel == 3) speed = .03;
+
+		if (gs.state == GameState.ACTIVE) {
+			direction.x += (0.5 - Math.random()) * .003;
+			direction.y += (0.5 - Math.random()) * .003;
+			translate(direction.x * speed, direction.y * speed);
+		}
 
 		gl.glPushMatrix();
 		gl.glColor3d(0.8, 0, 0);

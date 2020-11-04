@@ -2,6 +2,7 @@ package core;
 
 import entities.Ball;
 import entities.Entity;
+import utils.CollisionEvent;
 import utils.GeometryHelper;
 import utils.Vector;
 

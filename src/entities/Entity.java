@@ -1,6 +1,7 @@
 package entities;
 
 import com.jogamp.opengl.GL2;
+import core.GameState;
 import utils.GeometryHelper;
 import utils.Vector;
 
@@ -42,9 +43,14 @@ public class Entity {
 		}
 	}
 
-	public void draw(GL2 gl) {
+	public void resetTransform() {
+		Vector vec = new Vector(0 - com.x, 0 - com.y);
+		translate(vec.x, vec.y);
+	}
+
+	public void draw(GL2 gl, double[] color) {
 		gl.glPushMatrix();
-		gl.glColor4d(0, 0.5, 1, 0.4);
+		gl.glColor3d(color[0], color[1], color[2]);
 		gl.glBegin(GL2.GL_POLYGON);
 		for (Vector point : points) {
 			gl.glVertex2d(point.x, point.y);
@@ -63,5 +69,8 @@ public class Entity {
 
 	public Vector[] getPoints() {
 		return points;
+	}
+
+	public void handleCollision(GameState gs) {
 	}
 }
